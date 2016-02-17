@@ -1329,7 +1329,7 @@ static NSDictionary* org_apache_cordova_contacts_defaultFields = nil;
 
     if (ABPersonHasImageData(self.record)) {
         CFIndex photoId = ABRecordGetRecordID(self.record);
-        CFDataRef photoData = ABPersonCopyImageData(self.record);
+        CFDataRef photoData = ABPersonCopyImageDataWithFormat(self.record, kABPersonImageFormatThumbnail);
         if (!photoData) {
             return nil;
         }
