@@ -1479,6 +1479,19 @@ static NSDictionary* org_apache_cordova_contacts_defaultFields = nil;
         // no fields to search
         return NO;
     }
+    
+    // TDENOVAN - ADDED SEARCHING BY ID
+    if ([searchFields valueForKey:kW3ContactFieldId]) {
+        NSArray *idsToSearchFor = [testValue componentsSeparatedByString:@","];
+      
+        for (NSString *idToSearchFor in idsToSearchFor) {
+            NSInteger idAsInt = [idToSearchFor integerValue];
+            if (idAsInt && (recordId == idAsInt)) {
+                return YES;
+            }
+        }
+    }
+    // END TDENOVAN CHANGES
 
     if ([searchFields valueForKey:kW3ContactNickname]) {
         bFound = [self testStringValue:testValue forW3CProperty:kW3ContactNickname];
